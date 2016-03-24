@@ -416,7 +416,6 @@ sub sap_get_application_comment{
 	my $l_app_comment = $l_application[0]->{'comment'};
 	$l_app_comment =~s/\n//g;
         $l_app_comment =~s/^.*<Custom>(.+)<\/Custom>.*/<Custom>$1<\/Custom>/;
-	die;
         my $xml_header = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
         return $xml_header.$l_app_comment;
 }
