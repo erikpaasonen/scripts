@@ -535,7 +535,7 @@ sub print_usage {
         "\n Author  \t: Stephane PEREZ (" . 'stephane.perez@tufin.com'. ")",
         "\n Date \t\t: ".$prog_date."\n\r",
         "\n Version \t: ".$prog_version . "\n\r",
-	"\n Usage : apg_batch_run.pl -device-name <management name> [-policy-package <Name of the policy package>]\n",
+	"\n Usage : apg_run_script.pl -device-name <management name> [-policy-package <Name of the policy package>]\n",
 	"\t\t\t-rule-list <list of rules number>\n",
 	"\t\t\t-duration <number of days for analysis>\n",
 	"\t\t\t[-debug ] [-help]\n",
