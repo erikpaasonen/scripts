@@ -79,8 +79,9 @@ else{
         $debug = 255;
 }
 
-print "INFO\nINFO  ----> Welcome to the assign_validation_from_app script version $prog_version.\n",
-    "INFO  ---->\n" if $debug eq 255;
+print "DEBUG ---->\n",
+    "DEBUG ----> Welcome to DEBUG mode!\n",
+    "DEBUG ---->\n" if $debug eq 255;
 
 if (defined ($help)) {
 	print_usage();
