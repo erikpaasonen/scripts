@@ -50,7 +50,7 @@ $Data::Dumper::Indent = 1;
 use vars qw ($debug $help $testing $userid $device_name $policy_package $rules_list $acl_name $from_zone $to_zone $analysis_duration);
 
 my $prog_date    	= "April 27th 2016";
-my $prog_version        = "1.01";
+my $prog_version        = "1.02";
 my $start_run = time(); # We want to know how much time it took for the script to run (just for fun)
 
 #Retrieving additional parameters.
@@ -58,7 +58,7 @@ print "INFO\nINFO  ----> Welcome to the APG multiple job creation script version
     "INFO  ---->\n";
 
 GetOptions(
-	"debug"			=> \$debug,
+	"debug" 		=> \$debug,
         "help"        		=> \$help,
 	"userid=s"		=> \$userid,
 	"device-name=s"		=> \$device_name,
@@ -66,7 +66,7 @@ GetOptions(
 	"ACL=s"			=> \$acl_name,
 	"from-zone=s"		=> \$from_zone,
 	"to-zone=s"		=> \$to_zone,
-	"rules=s"		=> \$rules_list,
+	"rule-list=s"		=> \$rules_list,
 	"duration=s"		=> \$analysis_duration
         );
 
@@ -74,6 +74,9 @@ GetOptions(
 
 if (not defined ($debug)) {
 	$debug = 0;
+}
+else{
+        $debug = 255;
 }
 
 print "INFO\nINFO  ----> Welcome to the assign_validation_from_app script version $prog_version.\n",
@@ -538,10 +541,10 @@ sub print_usage {
 	"\n Usage : apg_run_script.pl -device-name <management name> [-policy-package <Name of the policy package>]\n",
 	"\t\t\t-rule-list <list of rules number>\n",
 	"\t\t\t-duration <number of days for analysis>\n",
-	"\t\t\t-userid <user ID of a valid SecureTrack user>",
+	"\t\t\t-userid <user ID of a valid SecureTrack user>\n",
 	"\t\t\t[-debug ] [-help]\n",
 	"Parameters details:\n",
-	"\trule-list \t\t : The list of rules on which the user wish to run APG on in the form \n",
+	"\trule-list : The list of rules on which the user wish to run APG on in the form \n",
 	"\t\t\t\t Accepted forms : 1,2-4\n",
 	"\t\t\t[-help]\n",
 	"Goodbye!\n";
