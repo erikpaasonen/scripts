@@ -80,8 +80,8 @@ else{
 }
 
 print "DEBUG ---->\n",
-    "DEBUG ----> Welcome to DEBUG mode!\n",
-    "DEBUG ---->\n" if $debug eq 255;
+      "DEBUG ----> Welcome to DEBUG mode!\n",
+      "DEBUG ---->\n" if ($debug ne 0);
 
 if (defined ($help)) {
 	print_usage();
