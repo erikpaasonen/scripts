@@ -49,8 +49,8 @@ $Data::Dumper::Indent = 1;
 
 use vars qw ($debug $help $testing $userid $device_name $policy_package $rules_list $acl_name $from_zone $to_zone $analysis_duration);
 
-my $prog_date    	= "4 September 2015";
-my $prog_version        = "1.0";
+my $prog_date    	= "April 27th 2016";
+my $prog_version        = "1.02";
 my $start_run = time(); # We want to know how much time it took for the script to run (just for fun)
 
 #Retrieving additional parameters.
@@ -58,7 +58,7 @@ print "INFO\nINFO  ----> Welcome to the APG multiple job creation script version
     "INFO  ---->\n";
 
 GetOptions(
-	"debug"			=> \$debug,
+	"debug" 		=> \$debug,
         "help"        		=> \$help,
 	"userid=s"		=> \$userid,
 	"device-name=s"		=> \$device_name,
@@ -66,7 +66,7 @@ GetOptions(
 	"ACL=s"			=> \$acl_name,
 	"from-zone=s"		=> \$from_zone,
 	"to-zone=s"		=> \$to_zone,
-	"rules=s"		=> \$rules_list,
+	"rule-list=s"		=> \$rules_list,
 	"duration=s"		=> \$analysis_duration
         );
 
@@ -74,6 +74,9 @@ GetOptions(
 
 if (not defined ($debug)) {
 	$debug = 0;
+}
+else{
+        $debug = 255;
 }
 
 print "INFO\nINFO  ----> Welcome to the assign_validation_from_app script version $prog_version.\n",
@@ -346,7 +349,7 @@ sub st_shell_reconf_mgmt{
 		$sth->execute() or die "ERROR ----> st_shell_reconf_mgmt ----> Error while executing the DB query with message : " . $sth->errstr() . "\n";
 		my $l_serverid_ref = $sth->fetchrow_hashref() or die "ERROR ----> st_shell_reconf_mgmt ----> Error while fetching the data from DB with message : " . $sth->errstr() . "\n";
 		print "WARNING ----> (st_shell_reconf_mgmt) ----> The device is handled by a distributed server or remote collector.\n",
-			"\t\t\t Please run the command 'st reconf $l_mgmt_id' on the server : $l_serverid_ref->{display_name} with IP $l_serverid_ref->{ip}.\õ";
+			"\t\t\t Please run the command 'st reconf $l_mgmt_id' on the server : $l_serverid_ref->{display_name} with IP $l_serverid_ref->{ip}.\n";
 	}
 }
 
@@ -460,7 +463,7 @@ sub st_api_get_rule_uuid {
 			#Unknown Vendor
 			die "ERROR ----> Vendor not known.\n";
 		}
-		if ($l_rule_uid ne '' and $l_found_rule) {
+		if ($l_found_rule and $l_rule_uid ne '') {
 			$l_rule_uid =~ s/\{(.*)\}/$1/;
 			print "DEBUG ----> (st_api_get_rule_uuid) ----> Found rule UUID for rule number $l_rule_num : $l_rule_uid\n" if ($debug ne 0);;
 			return $l_found_rule,\$l_rule_uid;
@@ -538,9 +541,10 @@ sub print_usage {
 	"\n Usage : apg_run_script.pl -device-name <management name> [-policy-package <Name of the policy package>]\n",
 	"\t\t\t-rule-list <list of rules number>\n",
 	"\t\t\t-duration <number of days for analysis>\n",
+	"\t\t\t-userid <user ID of a valid SecureTrack user>\n",
 	"\t\t\t[-debug ] [-help]\n",
 	"Parameters details:\n",
-	"\trule-list \t\t : The list of rules on which the user wish to run APG on in the form \n",
+	"\trule-list : The list of rules on which the user wish to run APG on in the form \n",
 	"\t\t\t\t Accepted forms : 1,2-4\n",
 	"\t\t\t[-help]\n",
 	"Goodbye!\n";

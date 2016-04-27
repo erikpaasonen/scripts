@@ -9,16 +9,20 @@ Installation Instructions
 The libraries archive contain the required RPM packages that needs to be installed into the solution.
 
 On the Tufin Central Server:
- - have the perl libraries installed
- - execute the script with the following parameters:
+ - follow the instructions to install the perl libraries
+ - copy this script to the same directory as the perl libraries
+ - execute the script with the appropriate parameters (see below)
 
+Example:  /usr/bin/perl ./apg_run_script.pl [parameters]
+
+Usage:
 apg_run_script.pl -device-name <management name> 
 	[-policy-package <Name of the policy package>]
-	-rule-list <list of rules number>
+	-rule-list <list of rule numbers>
 	-duration <number of days for analysis>
 	[-debug ] [-help]
 	Parameters details:
-	rule-list \t\t : The list of rules on which the user wish to run APG on in the form
+	rule-list : The list of rules on which the user wish to run APG on in the form
 	Accepted forms : 1,2-4
 	[-help]
 
