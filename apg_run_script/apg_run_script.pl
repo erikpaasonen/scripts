@@ -49,8 +49,8 @@ $Data::Dumper::Indent = 1;
 
 use vars qw ($debug $help $testing $userid $device_name $policy_package $rules_list $acl_name $from_zone $to_zone $analysis_duration);
 
-my $prog_date    	= "4 September 2015";
-my $prog_version        = "1.0";
+my $prog_date    	= "April 27th 2016";
+my $prog_version        = "1.01";
 my $start_run = time(); # We want to know how much time it took for the script to run (just for fun)
 
 #Retrieving additional parameters.
@@ -346,7 +346,7 @@ sub st_shell_reconf_mgmt{
 		$sth->execute() or die "ERROR ----> st_shell_reconf_mgmt ----> Error while executing the DB query with message : " . $sth->errstr() . "\n";
 		my $l_serverid_ref = $sth->fetchrow_hashref() or die "ERROR ----> st_shell_reconf_mgmt ----> Error while fetching the data from DB with message : " . $sth->errstr() . "\n";
 		print "WARNING ----> (st_shell_reconf_mgmt) ----> The device is handled by a distributed server or remote collector.\n",
-			"\t\t\t Please run the command 'st reconf $l_mgmt_id' on the server : $l_serverid_ref->{display_name} with IP $l_serverid_ref->{ip}.\õ";
+			"\t\t\t Please run the command 'st reconf $l_mgmt_id' on the server : $l_serverid_ref->{display_name} with IP $l_serverid_ref->{ip}.\n";
 	}
 }
 
