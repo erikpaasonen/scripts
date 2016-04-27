@@ -538,6 +538,7 @@ sub print_usage {
 	"\n Usage : apg_run_script.pl -device-name <management name> [-policy-package <Name of the policy package>]\n",
 	"\t\t\t-rule-list <list of rules number>\n",
 	"\t\t\t-duration <number of days for analysis>\n",
+	"\t\t\t-userid <user ID of a valid SecureTrack user>",
 	"\t\t\t[-debug ] [-help]\n",
 	"Parameters details:\n",
 	"\trule-list \t\t : The list of rules on which the user wish to run APG on in the form \n",
