@@ -50,7 +50,7 @@ $Data::Dumper::Indent = 1;
 use vars qw ($debug $help $testing $userid $device_name $policy_package $rules_list $acl_name $from_zone $to_zone $analysis_duration);
 
 my $prog_date    	= "April 27th 2016";
-my $prog_version        = "1.02";
+my $prog_version        = "1.03";
 my $start_run = time(); # We want to know how much time it took for the script to run (just for fun)
 
 #Retrieving additional parameters.
@@ -71,12 +71,14 @@ GetOptions(
         );
 
 # Global vars
-
+my $debug_cliset ;
 if (not defined ($debug)) {
 	$debug = 0;
+        $debug_cliset = 0;
 }
 else{
         $debug = 255;
+        $debug_cliset = 1;
 }
 
 print "INFO\nINFO  ----> Welcome to the assign_validation_from_app script version $prog_version.\n",
@@ -153,7 +155,10 @@ my $sc_pass = $cfg->param("securechange.pass");
 
 my $verify_hostname = $cfg->param("ssl.certificate-check");
 
-my $debug = $cfg->param("debug.level");
+if ($debug_cliset eq 0){
+    $debug = $cfg->param("debug.level");
+}
+
 
 #Variable Sanity Check
 my $error_code = 0;
@@ -228,6 +233,7 @@ if(@{st_db_get_userid($userid)}){
 					Dst_Zone	=> $to_zone,
 					Src_Zone	=> $from_zone,
 					ACL_Name	=> $acl_name,
+                                        UserId          => $userid,
 			);
 		}
 	}
@@ -262,8 +268,8 @@ print "\nINFO\nINFO\n",
 sub st_db_add_apg_job{
 	#This procedure will insert into the DB a job for a given rule UUID on a given management.
 	#
-	#INSERT INTO apg_tasks_view (task_name, mgmt_id, phase,  comment, id, end_date, rule_uid, offline, selected_results, policy_name, rule_num, orig_permissiveness, total_hits)
-	#VALUES ('test_CGI_APG_create_manual_task', '79', 'added',  'test', 12, '2015-09-02 12:15:32', '9C78C2F3-FBA7-4232-85E6-C456276CC456', 'f', 'f', 'Standard', '1', '79', 0);
+	#INSERT INTO apg_tasks_view (task_name, mgmt_id, phase,  comment, id, end_date, rule_uid, offline, selected_results, policy_name, rule_num, orig_permissiveness, total_hits, owner_user_id)
+	#VALUES ('test_CGI_APG_create_manual_task', '79', 'added',  'test', 12, '2015-09-02 12:15:32', '9C78C2F3-FBA7-4232-85E6-C456276CC456', 'f', 'f', 'Standard', '1', '79', 0, 'admin');
 	#
 	my %l_h_args = @_;
 	if ($debug ne 0) {
@@ -281,6 +287,7 @@ sub st_db_add_apg_job{
 	my $l_from_zone = $l_h_args{Src_Zone};
 	my $l_to_zone = $l_h_args{Dst_Zone};
 	my $l_acl_name = $l_h_args{ACL_Name};
+        my $l_user_id = $l_h_args{UserId};
 	my $l_orig_permissiveness = -1;
 
 	print "DEBUG ----> (st_db_add_apg_job) ----> Calling procedure st_api_get_rule_uuid.\n" if ($debug ne 0);
@@ -309,9 +316,9 @@ sub st_db_add_apg_job{
 
 	if ($l_result) {
 		my $dbquery = "INSERT INTO apg_tasks_view (mgmt_id, task_name, phase,  comment, id, end_date, rule_uid, offline,";
-		$dbquery .=  "selected_results, policy_name, rule_num, orig_permissiveness, total_hits)";
+		$dbquery .=  "selected_results, policy_name, rule_num, orig_permissiveness, total_hits, owner_user_id)";
 		$dbquery .=  "VALUES ('$l_mgmt_id', '$l_task_name', 'added', '$l_comment', $l_task_id, '$l_end_date', '" . $$l_rule_uuid_ref ."', 'f',";
-		$dbquery .=  "'f','$l_policy_name', '$l_rule_num', '$l_orig_permissiveness', 0)";
+		$dbquery .=  "'f','$l_policy_name', '$l_rule_num', '$l_orig_permissiveness', 0, '$userid')";
 
 		print "DEBUG ----> (st_db_add_apg_job) ----> dbquery : $dbquery\n" if ($debug ne 0);
 		$sth = $dbh->prepare($dbquery);
