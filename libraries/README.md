@@ -15,7 +15,7 @@ On the Tufin Central Server:
  - unzip libraries
  - rpm -ivh ./required-rpms/*
  - vi api.cfg and set the relevant IP addresses and user parameters
- - chmod tomcat:apache -R /opt	/tufin/securitysuite/ps/perl
+ - chown tomcat:apache -R /opt	/tufin/securitysuite/ps/perl
 
 
 Scripts available
