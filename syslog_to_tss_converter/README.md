@@ -10,7 +10,9 @@ Have a perl interpreter on your local computer
 
 Copy the script and then use it with the following parameters.
 
-Usage : syslog_to_tss_converter.pl -file <filename> -output {APG|TSS} [-fileout <filename>] [-yearstart {year value}] [-debug {0-255}]
+Usage : 
+
+syslog_to_tss_converter.pl -file <filename> -output {APG|TSS} [-fileout <filename>] [-yearstart {year value}] [-debug {0-255}]
 
 			[-filter_fw {FW Nane}] 
 
