@@ -11,18 +11,28 @@ Have a perl interpreter on your local computer
 Copy the script and then use it with the following parameters.
 
 Usage : syslog_to_tss_converter.pl -file <filename> -output {APG|TSS} [-fileout <filename>] [-yearstart {year value}] [-debug {0-255}]
+
 			[-filter_fw {FW Nane}] 
+
 			[-filter_acl {ACL_Name}] 
+
 			[-filter_src_ip {<IP Address or Subnet>}] 
+
 			[-filter_dst_ip {<IP Address or Subnet>}] 
+
 			[-filter_ip {<IP Address or Subnet>}] 
+
 			[-filter_port {1-65535}] 
+
 			[-filter_proto {1-255}] 
+
 			[-filter_date {DD-MM-YYYY}] 
+
 			[-filter_time {HH:MM:SS}] 
 
 
 Parameters details:
+
 	Parameters between '[ ]' are optionals
 
 	output 		: Provide the output either TSS Historical rule usage format or APG import like format.
