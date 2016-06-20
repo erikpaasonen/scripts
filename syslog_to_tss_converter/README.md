@@ -46,7 +46,7 @@ Parameters details:
 		Use a subnet with bitmask	: 192.168.1.0/24
 		Use a subnet with netmask	: 192.168.1.0/255.255.255.0
 
-The file format detection is automatic and is compatible with : Cisco firewalls, Fortinet Fortigate, SonicWall, Safe@Office devices. 
+The file format detection is automatic and is compatible with : Cisco firewalls, Fortinet Fortigate, SonicWall, Safe@Office devices, SRX and Netxcreen. 
 
 
 For SonicWall devices the file uses the following input data : The input file is a tcpdump of the syslog flow: 
