@@ -1,8 +1,8 @@
 Perl Scripts
 ============
 
-The following scripts demonstrate the interaction between the Tufin infrastructure and the Tufin API in order to enhance the capabilities of the Tufin Security Suite.
-
+The following sample scripts demonstrate the interaction between the Tufin infrastructure and the Tufin API in order to enhance the capabilities of the Tufin Security Suite.
+These scripts are provided as sample code for the functionality without any warranty.
 
 Installation Instructions
 -------------------------
@@ -16,7 +16,7 @@ On the Tufin Central Server:
 Example:  /usr/bin/perl ./apg_run_script.pl [parameters]
 
 Usage:
-apg_run_script.pl -device-name <management name> 
+apg_run_script.pl -device-name <management name>
 	[-policy-package <Name of the policy package>]
 	-rule-list <list of rule numbers>
 	-duration <number of days for analysis>
@@ -28,4 +28,4 @@ apg_run_script.pl -device-name <management name>
 
 Help
 ----
-Please contact support@tufin.com or stephane.perez@tufin.com
+Tufin Technical Support will be able to help on some of the functionality related to the API, but will will not assist on the script usage or changes.
