@@ -1,7 +1,7 @@
 Perl Scripts
 ============
 
-The following sample scripts demonstrate the interaction between the Tufin infrastructure and the Tufin API in order to enhance the capabilities of the Tufin Security Suite.
+The following sample scripts demonstrate the interaction between the Tufin infrastructure and the Tufin API in order to enhance the capabilities of the Tufin Orchestration Suite.
 These scripts are provided as sample code for the functionality without any warranty.
 
 Installation Instructions
