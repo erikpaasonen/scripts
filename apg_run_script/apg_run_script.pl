@@ -402,7 +402,7 @@ sub st_api_get_rule_uuid {
 		elsif($l_device_vendor eq "Netscreen"){
 			if (($l_fw_rule->{binding}->{from_zone}->{name} eq $l_from_zone) and
 			    $l_fw_rule->{binding}->{to_zone}->{name} eq $l_to_zone) {
-				if ($l_fw_rule->{rule_number} eq $l_rule_num) {
+				if ($l_fw_rule->{order} eq $l_rule_num) {
 					$l_rule_uid = $l_fw_rule->{uid};
 					$l_found_rule = 1;
 				}
